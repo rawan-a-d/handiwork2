@@ -34,3 +34,4 @@ jobs:
         REPO_OWNER: 'rawan-a-d'
         FILE_PATH: 'K8S/auth-depl.yaml'
         IMAGE_TAG: '12345689096'
+        GITHUB_BRANCH: 'master'
