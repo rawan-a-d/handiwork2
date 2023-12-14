@@ -23,15 +23,38 @@ jobs:
   imageTag-updater:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout Target Repository
+        uses: actions/checkout@v3
+        with:
+          repository: awan-a-d/configuration
+          path: K8S
+          token: ${{ secrets.GH_TOKEN }} 
 
-    - name: Update imageTag
-      uses: cheelim1/image-updater@v1.11
-      with:
-        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-        REPO_NAME: 'configuration'
-        REPO_OWNER: 'rawan-a-d'
-        FILE_PATH: 'K8S/auth-depl.yaml'
-        IMAGE_TAG: '12345689096'
-        GITHUB_BRANCH: 'master'
+      - name: Update Image Version in the related HelmChart values.yaml
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: 'K8S/auth-depl.yaml'
+          propertyPath: 'backend.version'
+          value: '123456'
+          repository: rawan-a-d/configuration
+          branch: master
+          targetBranch: master
+          createPR: false
+          message: 'Update Image Version to 12345'
+          token: ${{ secrets.GH_TOKEN }}
+          workDir: K8S
+  # imageTag-updater:
+    # runs-on: ubuntu-latest
+    # steps:
+    # - name: Checkout code
+    #   uses: actions/checkout@v3
+
+    # - name: Update imageTag
+    #   uses: cheelim1/image-updater@v1.11
+    #   with:
+    #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+    #     REPO_NAME: 'configuration'
+    #     REPO_OWNER: 'rawan-a-d'
+    #     FILE_PATH: 'K8S/auth-depl.yaml'
+    #     IMAGE_TAG: '12345689096'
+    #     GITHUB_BRANCH: 'master'
