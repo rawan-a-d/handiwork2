@@ -1,0 +1,36 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+    branches: [ "master" ]
+
+# jobs:
+
+#   build:
+
+#     runs-on: ubuntu-latest
+
+#     steps:
+#     - uses: actions/checkout@v3
+#     - name: Build the Docker image
+#       run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+
+
+
+jobs:
+  imageTag-updater:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Update imageTag
+      uses: cheelim1/image-updater@v1.11
+      with:
+        GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
+        REPO_NAME: 'configuration'
+        REPO_OWNER: 'rawan-a-d'
+        FILE_PATH: 'K8S/auth-depl.yaml'
+        IMAGE_TAG: '12345678'
