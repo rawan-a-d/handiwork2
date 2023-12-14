@@ -26,7 +26,7 @@ jobs:
       - name: Checkout Target Repository
         uses: actions/checkout@v3
         with:
-          repository: awan-a-d/configuration
+          repository: rawan-a-d/configuration
           path: K8S
           token: ${{ secrets.GH_TOKEN }} 
 
