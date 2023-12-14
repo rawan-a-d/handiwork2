@@ -1,0 +1,11 @@
+/* Search form */
+.search__form-container {
+	width: 44%;
+	margin: 0 28%;
+	border-radius: 200px;
+}
+
+.search__field {
+	width: 80%;
+	margin-right: 20px;
+}

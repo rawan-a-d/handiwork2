@@ -1,0 +1,21 @@
+# docker build -f Dockerfile.dev -t <docker_id>/handiwork-client-dev .
+# docker run -p 4200:4200 <docker_id>/handiwork-client-dev
+
+# Base image
+FROM node:16-alpine
+
+# Working directory
+WORKDIR /app
+
+# Install dependencies
+COPY package.json ./
+RUN npm install
+RUN npm install -g @angular/cli
+
+# Copy everything
+COPY . .
+
+EXPOSE 4200
+
+# Default command
+CMD ["ng", "serve", "--host", "0.0.0.0"]

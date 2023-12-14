@@ -1,0 +1,12 @@
+<div class="slideshow-container" #myDiv>
+	<!-- Images -->
+	<div class="slideshow-container__slides--fade">
+		<div class="slideshow-container__slide-number">{{ slideIndex + 1}} / {{ images.length }}</div>
+		<img [src]="images[slideIndex]" style="width:100%" />
+		<!--<div class="slideshow-container__caption">Caption Text</div>-->
+	</div>
+
+	<!-- Next Previous buttons -->
+	<a *ngIf="slideIndex > 0" class="slideshow-container__prev" (click)="plusSlides(-1)">&#10094;</a>
+	<a *ngIf="slideIndex < images.length - 1" class="slideshow-container__next" (click)="plusSlides(1)">&#10095;</a>
+</div>

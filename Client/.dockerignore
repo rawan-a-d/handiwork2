@@ -1,0 +1,42 @@
+.git
+.gitignore
+node_modules
+.vscode
+Dockerfile
+dist
+
+
+
+apiVersion: skaffold/v1beta1
+kind: Config
+build:
+  local:
+    push: false
+  artifacts:
+    - image: rawanad/handiwork-client-dev
+      context: Client
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        infer:
+          - src/**/*
+    - image: rawanad/handiwork-users
+      context: Users
+      docker:
+        dockerfile: Dockerfile
+        #sync: "kfdmfk"
+    - image: rawanad/handiwork-services
+      context: Services
+      docker:
+        dockerfile: Dockerfile
+# list all config files that need to be managed
+deploy:
+  kubectl:
+    manifests:
+      # apply this config file to the cluster
+      - K8S/*.yaml
+      #- K8S/client-depl.yaml
+      #- K8S/services-depl.yaml
+      #- K8S/users-depl.yaml
+      #- K8S/rabbotmq-depl.yaml
+      #- K8S/ingress-srv.yaml

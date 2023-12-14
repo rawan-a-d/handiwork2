@@ -1,0 +1,29 @@
+.login-form {
+	width: 30%;
+	margin: 10% 35%;
+	padding: 3% 2%;
+	border: 1px black solid;
+	border-radius: 2%;
+}
+
+.login-form__heading {
+	text-align: center;
+}
+
+mat-form-field {
+	display: block;
+}
+
+#login-form__button {
+	margin-top: 2%;
+	width: 100%;
+}
+
+#login-form__no-account {
+	margin-top: 8%;
+	font-size: 1.1em;
+}
+
+#login-form__regiser-now {
+	cursor: pointer;
+}

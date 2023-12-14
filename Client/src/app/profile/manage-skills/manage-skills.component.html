@@ -1,0 +1,32 @@
+<!-- New category button -->
+<button mat-raised-button (click)='openDialog("New service")' color="accent" class="new-skill">New skill</button>
+
+<!-- Table -->
+<table class="table table-bordered table-hover">
+	<thead class="table__header">
+		<tr class="table__row">
+			<th class="table__row-header">Id</th>
+			<th class="table__row-header">Category</th>
+			<th class="table__row-header">Info</th>
+			<th class="table__row-header">Images</th>
+			<th class="table__row-header">Edit</th>
+			<th class="table__row-header">Delete</th>
+		</tr>
+	</thead>
+	<tbody class="table__body" *ngFor="let service of services">
+		<tr class="table__row">
+			<td class="table__row-data">{{service.id}}</td>
+			<td class="table__row-data">{{service.serviceCategory.name}}</td>
+			<td class="table__row-data">{{service.info}}</td>
+			<td class="table__row-data">
+				<button mat-button color='primary' [routerLink]="[service.id]">Images</button>
+			</td>
+			<td class="table__row-data">
+				<button mat-stroked-button color='primary' (click)='openDialog("Edit service", service)'>Edit</button>
+			</td>
+			<td class="table__row-data">
+				<button mat-stroked-button color='warn' (click)="deleteService(service.id)">Delete</button>
+			</td>
+		</tr>
+	</tbody>
+</table>

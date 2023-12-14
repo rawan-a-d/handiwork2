@@ -1,0 +1,11 @@
+<h1 mat-dialog-title>{{data.action}} service category</h1>
+<div mat-dialog-content>
+	<mat-form-field appearance="fill">
+		<mat-label>Name</mat-label>
+		<input matInput [(ngModel)]="data.serviceCategory.name">
+	</mat-form-field>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)=" onNoClick()">No Thanks</button>
+	<button mat-button [mat-dialog-close]="data.serviceCategory" cdkFocusInitial>Ok</button>
+</div>

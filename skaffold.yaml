@@ -1,0 +1,52 @@
+apiVersion: skaffold/v2beta12
+kind: Config
+metadata:
+  name: handiwork
+# list all different images/deployments we want skaffold to manage
+build:
+  local:
+    push: false
+  artifacts:
+    - image: rawanad/handiwork-client
+      context: Client
+      docker:
+        dockerfile: Dockerfile
+      # when the files specified change, take it and throw it to the container
+      # if something else changes, scaffold will rebuild the image from scratch and update the cluster
+      sync:
+        manual:
+          - src: "**/*.ts"
+            dest: .
+          - src: "**/*.css"
+            dest: .
+          - src: "**/*.html"
+            dest: .
+    - image: rawanad/handiwork-services
+      context: Services
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.cs"
+            dest: .
+    - image: rawanad/handiwork-users-dev
+      context: Users
+      docker:
+        dockerfile: Dockerfile.dev
+      sync:
+        manual:
+          - src: "**/*.cs"
+            dest: .
+    - image: rawanad/handiwork-auth
+      context: Auth
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.cs"
+            dest: .
+# list all config files that need to be managed
+deploy:
+  kubectl:
+    manifests:
+      - K8S/*

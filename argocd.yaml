@@ -1,0 +1,44 @@
+# Argo CD config file
+# points to the repository where the app is
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: handiwork-argo-application
+  namespace: argocd
+  #annotations:
+  #argocd-image-updater.argoproj.io/image-list: ${{ secrets.DH_USERNAME }}/handiwork-auth
+  #argocd-image-updater.argoproj.io/write-back-method: git:secret:argocd/git-creds
+  #argocd-image-updater.argoproj.io/git-branch: master
+spec:
+  project: default
+
+  # git repository that argo cd needs to connect to and sync it
+  source:
+    repoURL: https://github.com/rawan-a-d/HandiWork
+    # last commit in the git repo
+    targetRevision: HEAD
+    # specify the path (folder)
+    path: K8S
+  # K8s cluster destination where argo cd will apply the definitions it found in the git repo
+  destination:
+    # address of kubernetes cluster (endpoint of K8s API server)
+    # in this case: the destination cluster, is the same where ArgoCD is deployed
+    # we can access this internal service because ArgoCD is deployed inside the destination cluster
+    server: https://kubernetes.default.svc
+    # namespace that we want to apply our config files in
+    namespace: handiwork
+
+  syncPolicy:
+    syncOptions:
+      # if namespace doesn't exist, create it
+      - CreateNamespace=true
+
+    # enable automatic sync (track and sync to git repo)
+    automated:
+      # automatic self healing
+      # by default, changes made to the live cluster will not trigger automated sync
+      selfHeal: true
+      # automatic pruning
+      # if we renamed a resource or delete it, ArgoCD should do the same
+      # by default, automatic sync will not delete resources
+      prune: true

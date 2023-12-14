@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>disable</Nullable>
+    <AssemblyName>MessagingModels</AssemblyName>
+    <PackageId>HandiWork.MessagingModels</PackageId>
+    <Version>1.0.3</Version>
+    <Authors>Rawan</Authors>
+    <Company>Rawan</Company>
+    <Product>MessagingModels</Product>
+    <Description>HandiWork app messaging models</Description>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <PackageTags>Models, HandiWork</PackageTags>
+  </PropertyGroup>
+
+</Project>

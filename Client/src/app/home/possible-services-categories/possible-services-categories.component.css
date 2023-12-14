@@ -1,0 +1,23 @@
+.heading {
+	text-align: center;
+	margin-top: 2%;
+}
+
+.services-list {
+	width: 80%;
+	margin: auto 10%;
+}
+
+.services-list__name {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	color: white;
+	font-size: 1.3em;
+}
+
+.services-list__image {
+	width: 100%;
+	object-fit: cover;
+}

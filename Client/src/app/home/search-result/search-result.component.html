@@ -1,0 +1,24 @@
+<!-- Workers based on location -->
+<!-- All users -->
+<div class="search-result-container">
+	<!-- All users, used to limit width -->
+	<div class="search-result-container__inner">
+		<!-- Individual user -->
+		<div class="search-result-container__item" *ngFor="let user of result">
+			<div class="search-result-container__image">
+				<img src="https://cdn-icons-png.flaticon.com/512/149/149071.png" />
+			</div>
+			<div class="search-result-container__text">
+				<h3>{{user.name}}</h3>
+				<p>
+					It is a long established fact that a reader will be
+					distracted by the readable content of a page when looking at
+					its layout. The point of using Lorem Ipsum is that it has a
+					more-or-less normal distribution of letters, as opposed to
+					using 'Content here, content here'
+					{{user.about}}
+				</p>
+			</div>
+		</div>
+	</div>
+</div>

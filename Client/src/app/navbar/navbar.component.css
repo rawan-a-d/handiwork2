@@ -1,0 +1,46 @@
+/* Nav */
+.header {
+	color: #fff;
+	padding: 0 45px;
+	/* align direct children elements (header and list) to be on a single line */
+	display: flex;
+	/* any remaining space will be placed in between the direct childern elements */
+	justify-content: space-between;
+	/* center li's vertically within parent */
+	align-items: center;
+	flex-wrap: wrap;
+	margin-bottom: 2%;
+}
+
+/* descendant selector */
+.nav a {
+	color: #fff;
+	/* remove underline */
+	text-decoration: none;
+	/* needed for rotate on hover */
+	display: block;
+	/* handle animation (rotation) */
+	transition: all 0.3s ease-out;
+}
+
+/* hover effect */
+.nav a:hover {
+	color: #c5cae9;
+	/* rotate on hover */
+	transform: rotate(6deg);
+}
+
+/* ul */
+.nav {
+	/* remove bulleted icons */
+	list-style: none;
+	margin: 0;
+	padding: 0;
+	/* show direct children elements (li) on one line */
+	display: flex;
+}
+
+/* add space around li's */
+.nav li {
+	margin-left: 20px;
+}

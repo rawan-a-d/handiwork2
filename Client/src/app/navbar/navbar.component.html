@@ -1,0 +1,11 @@
+<mat-toolbar class="header" color="primary">
+	<h1 routerLink="/">HandiWork</h1>
+	<div class="nav">
+		<a mat-button
+			*ngIf="authService.isLoggedIn() && (authService.currentUser.role.indexOf('Admin') >=0 || authService.currentUser.role.indexOf('Moderator') >=0)"
+			routerLink="/moderator">Moderator</a>
+		<a mat-button *ngIf="authService.isLoggedIn()" [routerLink]="['/user', authService.currentUser.Id]">Profile</a>
+		<a mat-button *ngIf="!authService.isLoggedIn()" routerLink="/login">Login</a>
+		<a mat-button *ngIf="authService.isLoggedIn()" (click)="logout()">Logout</a>
+	</div>
+</mat-toolbar>

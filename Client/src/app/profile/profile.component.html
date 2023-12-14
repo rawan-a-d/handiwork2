@@ -1,0 +1,61 @@
+<div class="container">
+	<div class="container__item" *ngIf="profile">
+		<div class="container__row container__personal-info">
+			<img class="container__profile-image"
+				src="https://www.nicepng.com/png/detail/136-1366211_group-of-10-guys-login-user-icon-png.png">
+		</div>
+		<div class="container__row container__personal-info">
+			<h2>{{profile.name}}</h2>
+		</div>
+		<div class="container__row container__personal-info">
+			<p>
+				<!--It is a long established fact that a reader will be distracted by the readable content of a page when
+				looking at its
+				layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as
+				opposed to using
+				'Content here, content here', making it look like readable English. Many desktop publishing packages and
+				web page
+				editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover
+				many web sites
+				still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes
+				on purpose
+				(injected humour and the like).-->
+				{{profile.about}}
+			</p>
+		</div>
+		<div class="container__row container__personal-info">
+			<h3>Contact details</h3>
+			{{profile.phone}}
+		</div>
+	</div>
+	<div class="container__item">
+		<div class="container__row container__one-row container__skills">
+			<h2>I am skilled in</h2>
+			<button mat-raised-button color="primary"
+				[routerLink]="['/user', authService.currentUser.Id, 'manage-skills']">Manage work</button>
+		</div>
+		<div class="container__row container__skills" *ngIf="chips">
+			<mat-chip-list aria-label="Skill selection" selectable="true">
+				<mat-chip *ngFor="let chip of chips; let i = index" [selected]="chip.selected"
+					(click)="selectChip(chip)" color="accent">
+					{{chip.name}}
+				</mat-chip>
+			</mat-chip-list>
+		</div>
+		<div class="container__row container__skills container__photos">
+			<app-image-slider [images]="photos" *ngIf="photos.length > 0; else noPhotos">
+			</app-image-slider>
+
+			<ng-template #noPhotos>
+				<h2 class="container__no-photos">
+					No photos available
+				</h2>
+			</ng-template>
+
+		</div>
+		<div class="container__row container__skills container__see-portfolio" *ngIf="photos.length > 0">
+			<button class="container__see-portfolio-button" mat-raised-button color="accent">See entire
+				portfolio</button>
+		</div>
+	</div>
+</div>

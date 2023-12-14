@@ -1,0 +1,21 @@
+<h1 mat-dialog-title>{{data.title}}</h1>
+<div mat-dialog-content>
+	<mat-form-field appearance="fill">
+		<mat-label>Skill</mat-label>
+		<mat-select [(ngModel)]="data.serviceCategoryId">
+			<mat-option *ngFor="let serviceCategory of serviceCategories" [value]="serviceCategory.id">
+				{{serviceCategory.name}}
+			</mat-option>
+		</mat-select>
+	</mat-form-field>
+
+	<mat-form-field appearance="fill">
+		<mat-label>Additional information</mat-label>
+		<input matInput [(ngModel)]="data.info">
+	</mat-form-field>
+</div>
+<div mat-dialog-actions>
+	<button mat-button (click)="onNoClick()">No Thanks</button>
+	<!-- pass data back to manage skills component -->
+	<button mat-button [mat-dialog-close]="data" cdkFocusInitial>Ok</button>
+</div>

@@ -1,0 +1,29 @@
+/* Container */
+.search-result-container {
+	display: flex;
+	/* horizontal center */
+	justify-content: center;
+}
+
+/* Inner container */
+.search-result-container__inner {
+	max-width: 600px;
+}
+
+/* Individual item */
+.search-result-container__item {
+	display: flex;
+	padding: 18px 15px;
+	/* vertical center */
+	align-items: center;
+}
+
+/* Image container */
+.search-result-container__image {
+	text-align: center;
+}
+
+/* image */
+.search-result-container__image img {
+	width: 80%;
+}
