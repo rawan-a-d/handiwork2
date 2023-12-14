@@ -33,7 +33,7 @@ jobs:
       - name: Update Image Version in the related HelmChart values.yaml
         uses: fjogeleit/yaml-update-action@main
         with:
-          valueFile: 'K8S/auth-depl.yaml'
+          valueFile: 'auth-depl.yaml'
           propertyPath: 'spec.template.spec.image'
           value: '123456'
           repository: rawan-a-d/configuration
