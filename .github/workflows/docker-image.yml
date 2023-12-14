@@ -43,6 +43,8 @@ jobs:
           message: 'Update Image Version to 12345'
           token: ${{ secrets.GH_TOKEN }}
           workDir: K8S
+          updateFile: true
+
   # imageTag-updater:
     # runs-on: ubuntu-latest
     # steps:
