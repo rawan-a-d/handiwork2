@@ -34,7 +34,7 @@ jobs:
         uses: fjogeleit/yaml-update-action@main
         with:
           valueFile: 'K8S/auth-depl.yaml'
-          propertyPath: 'backend.version'
+          propertyPath: 'spec.image'
           value: '123456'
           repository: rawan-a-d/configuration
           branch: master
