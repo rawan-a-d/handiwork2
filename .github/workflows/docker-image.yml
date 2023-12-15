@@ -20,41 +20,53 @@ on:
 
 
 jobs:
-  imageTag-updater:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Target Repository
-        uses: actions/checkout@v3
+      - uses: actions/checkout@v3
+      - name: Checkout
+        uses: actions/checkout@v4.1.1
         with:
-          repository: rawan-a-d/configuration
-          path: K8S
-          token: ${{ secrets.GH_TOKEN }} 
-
-      - name: Update Image Version in the related HelmChart values.yaml
-        uses: fjogeleit/yaml-update-action@main
-        with:
-          valueFile: 'auth-depl.yaml'
-          propertyPath: 'spec.template.spec.image'
-          value: '123456'
-          repository: rawan-a-d/configuration
-          branch: master
-          targetBranch: master
-          createPR: false
-          message: 'Update Image Version to 12345'
+          # Repository name with owner. For example, actions/checkout
+          repository: 'configuration'
+          # The branch, tag or SHA to checkout. When checking out the repository that triggered a workflow, this defaults to the reference or SHA for that event.  Otherwise, uses the default branch.
+  
           token: ${{ secrets.GH_TOKEN }}
-          workDir: K8S
-  # imageTag-updater:
-    # runs-on: ubuntu-latest
-    # steps:
-    # - name: Checkout code
-    #   uses: actions/checkout@v3
+          
+      - name: Update Client yaml file in place
+        # You may pin to the exact commit or the version.
+        uses: loveholidays/gitops-action-yaml-updater@v1.0.0
+        with:
+          # TYPE of the new value to be updated
+          mode: IMAGE_TAG
+          # Name of the container
+          container-name: auth
+          # Path to the yaml file
+          filepath: K8S/auth-depl.yaml
+          # Tag value for the new image
+          new-image-tag: ${{ github.sha }}
 
-    # - name: Update imageTag
-    #   uses: cheelim1/image-updater@v1.11
-    #   with:
-    #     GITHUB_TOKEN: ${{ secrets.GH_TOKEN }}
-    #     REPO_NAME: 'configuration'
-    #     REPO_OWNER: 'rawan-a-d'
-    #     FILE_PATH: 'K8S/auth-depl.yaml'
-    #     IMAGE_TAG: '12345689096'
-    #     GITHUB_BRANCH: 'master'
+      - name: Add & Commit
+        # You may pin to the exact commit or the version.
+        uses: EndBug/add-and-commit@v9.0.0
+        with:
+          # Arguments for the git add command
+          add: "*"
+          # The message for the commit
+          message: Update docker image version
+          # Whether to push the commit and, if any, its tags to the repo. It can also be used to set the git push arguments (more info in the README)
+          push: true
+          # The token used to make requests to the GitHub API. It's NOT used to make commits and should not be changed.
+          github_token: ${{ secrets.GH_TOKEN }}
+
+      - name: GitHub Push
+        # You may pin to the exact commit or the version.
+        uses: ad-m/github-push-action@v0.6.0
+        with:
+          # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.GH_TOKEN }}
+          # Destination branch to push changes
+          branch: master
+          # Determines if force push is used
+          force: false
