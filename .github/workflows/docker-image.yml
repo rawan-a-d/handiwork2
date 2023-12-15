@@ -90,6 +90,7 @@ jobs:
         with:
           # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
           github_token: ${{ secrets.GH_TOKEN }}
+          repository: 'rawan-a-d/configuration'
           # Destination branch to push changes
           branch: master
           # Determines if force push is used
