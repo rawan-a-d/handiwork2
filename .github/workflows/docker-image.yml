@@ -25,6 +25,11 @@ jobs:
 
     steps:
       - uses: actions/checkout@v3
+
+      - name: Pull changes from remote
+        run: |
+          git pull origin master
+      
       - name: Checkout
         uses: actions/checkout@v4.1.1
         with:
