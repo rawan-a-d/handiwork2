@@ -1,9 +1,7 @@
-name: Docker Image CI
+name: Uodate Docker image tag in configuration repo
 
 on:
   push:
-    branches: [ "master" ]
-  pull_request:
     branches: [ "master" ]
 
 jobs:
