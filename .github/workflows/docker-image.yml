@@ -47,17 +47,17 @@ jobs:
           # Tag value for the new image
           new-image-tag: ${{ github.sha }}
 
-      - name: Git commit, pull & push action
-        # You may pin to the exact commit or the version.
-        # uses: mgrybyk/git-commit-pull-push-action@ed59e8fd7144e223f915f7e8be9d9e87e23fe72b
-        uses: mgrybyk/git-commit-pull-push-action@v1.2.2
-        with:
-          # Local file path to the git repository. Defaults to the current directory '.'
-          repository: 'rawan-a-d/configuration'
-          # Git branch name, where changes should be pushed to.
-          branch: master
-          # Commit message
-          commit_message: 'Update image'
+      # - name: Git commit, pull & push action
+      #   # You may pin to the exact commit or the version.
+      #   # uses: mgrybyk/git-commit-pull-push-action@ed59e8fd7144e223f915f7e8be9d9e87e23fe72b
+      #   uses: mgrybyk/git-commit-pull-push-action@v1.2.2
+      #   with:
+      #     # Local file path to the git repository. Defaults to the current directory '.'
+      #     repository: 'rawan-a-d/configuration'
+      #     # Git branch name, where changes should be pushed to.
+      #     branch: master
+      #     # Commit message
+      #     commit_message: 'Update image'
           # git pull arguments
           # pull_args: # optional, default is --rebase
           # git add arguments (eg. -u) or 'src/*.js'
