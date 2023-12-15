@@ -47,27 +47,43 @@ jobs:
           # Tag value for the new image
           new-image-tag: ${{ github.sha }}
 
-      - name: Add & Commit
+      - name: Git commit, pull & push action
         # You may pin to the exact commit or the version.
-        uses: EndBug/add-and-commit@v9.0.0
+        # uses: mgrybyk/git-commit-pull-push-action@ed59e8fd7144e223f915f7e8be9d9e87e23fe72b
+        uses: mgrybyk/git-commit-pull-push-action@v1.2.2
         with:
-          # Arguments for the git add command
-          add: "*"
-          # The message for the commit
-          message: Update docker image version
-          pull: '--rebase --autostash'
-          # Whether to push the commit and, if any, its tags to the repo. It can also be used to set the git push arguments (more info in the README)
-          push: true
-          # The token used to make requests to the GitHub API. It's NOT used to make commits and should not be changed.
-          github_token: ${{ secrets.GH_TOKEN }}
-
-      - name: GitHub Push
-        # You may pin to the exact commit or the version.
-        uses: ad-m/github-push-action@v0.6.0
-        with:
-          # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
-          github_token: ${{ secrets.GH_TOKEN }}
-          # Destination branch to push changes
+          # Local file path to the git repository. Defaults to the current directory '.'
+          repository: 'rawan-a-d/configuration'
+          # Git branch name, where changes should be pushed to.
           branch: master
-          # Determines if force push is used
-          force: false
+          # Commit message
+          commit_message: 'Update image'
+          # git pull arguments
+          # pull_args: # optional, default is --rebase
+          # git add arguments (eg. -u) or 'src/*.js'
+          # add_args: # optional, default is .
+          
+      # - name: Add & Commit
+      #   # You may pin to the exact commit or the version.
+      #   uses: EndBug/add-and-commit@v9.0.0
+      #   with:
+      #     # Arguments for the git add command
+      #     add: "*"
+      #     # The message for the commit
+      #     message: Update docker image version
+      #     # pull: '--rebase --autostash'
+      #     # Whether to push the commit and, if any, its tags to the repo. It can also be used to set the git push arguments (more info in the README)
+      #     push: true
+      #     # The token used to make requests to the GitHub API. It's NOT used to make commits and should not be changed.
+      #     github_token: ${{ secrets.GH_TOKEN }}
+
+      # - name: GitHub Push
+      #   # You may pin to the exact commit or the version.
+      #   uses: ad-m/github-push-action@v0.6.0
+      #   with:
+      #     # Token for the repo. Can be passed in using $\{{ secrets.GITHUB_TOKEN }}
+      #     github_token: ${{ secrets.GH_TOKEN }}
+      #     # Destination branch to push changes
+      #     branch: master
+      #     # Determines if force push is used
+      #     force: false
