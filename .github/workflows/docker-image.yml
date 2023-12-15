@@ -55,6 +55,7 @@ jobs:
           add: "*"
           # The message for the commit
           message: Update docker image version
+          pull: true
           # Whether to push the commit and, if any, its tags to the repo. It can also be used to set the git push arguments (more info in the README)
           push: true
           # The token used to make requests to the GitHub API. It's NOT used to make commits and should not be changed.
